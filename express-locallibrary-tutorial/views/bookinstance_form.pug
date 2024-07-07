@@ -1,7 +1,8 @@
 extends layout
 
 block content
-  h1=title
+  h1 #{title} #{bookinstance._id}
+  h2 Current Book: #{bookinstance.book.title}
 
   form(method='POST')
     div.form-group
