@@ -30,11 +30,13 @@ mongoose.set("strictQuery", false);
 const dev_db_url =
   "mongodb+srv://errolleesw:Wjn7iDit4iWtwXR0@cluster0f.u2jmp9d.mongodb.net/local_library?retryWrites=true&w=majority&appName=Cluster0f";
 
-const mongoDB = configData.getConnectionInfo();;
+// const mongoDB = configData.getConnectionInfo();
+const mongoDB = process.env.MONGODB_URI || dev_db_url;
 
 main().catch((err) => console.log(err));
 async function main() {
-  await mongoose.connect((await mongoDB).DATABASE_URL);
+  // await mongoose.connect((await mongoDB).DATABASE_URL);
+  await mongoose.connect(mongoDB);
 }
 
 // Add helmet to the middleware chain.
