@@ -13,13 +13,15 @@ const app = express();
 // Set up mongoose connection
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-const mongoDB = "mongodb+srv://errolleesw:Wjn7iDit4iWtwXR0@cluster0f.u2jmp9d.mongodb.net/local_library?retryWrites=true&w=majority&appName=Cluster0f";
+
+const dev_db_url =
+  "mongodb+srv://errolleesw:Wjn7iDit4iWtwXR0@cluster0f.u2jmp9d.mongodb.net/local_library?retryWrites=true&w=majority&appName=Cluster0f";
+const mongoDB = process.env.MONGODB_URI || dev_db_url;
 
 main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect(mongoDB);
 }
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
