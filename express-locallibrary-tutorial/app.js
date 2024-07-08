@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+const configData = require("./config/connection");
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const catalogRouter = require("./routes/catalog"); // Import routes for "catalog" area of site.
@@ -28,11 +29,12 @@ mongoose.set("strictQuery", false);
 
 const dev_db_url =
   "mongodb+srv://errolleesw:Wjn7iDit4iWtwXR0@cluster0f.u2jmp9d.mongodb.net/local_library?retryWrites=true&w=majority&appName=Cluster0f";
-const mongoDB = process.env.MONGODB_URI || dev_db_url;
+
+const mongoDB = configData.getConnectionInfo();;
 
 main().catch((err) => console.log(err));
 async function main() {
-  await mongoose.connect(mongoDB);
+  await mongoose.connect((await mongoDB).DATABASE_URL);
 }
 
 // Add helmet to the middleware chain.
