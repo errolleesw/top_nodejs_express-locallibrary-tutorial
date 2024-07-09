@@ -11,5 +11,8 @@ This guide was used to to make it happen [Deploy a Node.js web app using MongoDB
 
 ## Current issues:
 2024-07-08
-- [ ] Unable to view created documents in Cosmos DB. Maybe I just need to give it some time to show up.
-- [ ] Unable to set up Indexes in Cosmos DB - related to the above. Can't view the collections so cannot create the Index, without the index, existing sort() queries in controllers cannot work. Tested this by removing the sort in the author controller and it worked.
+- [x] Unable to view created documents in Cosmos DB. Maybe I just need to give it some time to show up.
+  - Adding IP to whitelist didn't fix this. But I think this is related to permissions.
+  - Need to enable access from Azure portal in Settings > Networking. [Configure an IP firewall for your Azure Cosmos DB account | Microsoft Learn](https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-configure-firewall?WT.mc_id=Portal-Microsoft_Azure_DocumentDB)
+- [x] Unable to set up Indexes in Cosmos DB - related to the above. Can't view the collections so cannot create the Index, without the index, existing sort() queries in controllers cannot work. Tested this by removing the sort in the author controller and it worked.
+  - Was able to update the Index, by adding IP to whitelist. But still couldn't see the dat.
